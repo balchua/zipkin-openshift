@@ -1,0 +1,28 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: zipkin
+  namespace: default
+  labels:
+    run: zipkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: zipkin
+  template:
+    metadata:
+      labels:
+        run: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: zipkin:1.30.3
+        ports:
+        - containerPort: 9411
+          protocol: TCP
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
