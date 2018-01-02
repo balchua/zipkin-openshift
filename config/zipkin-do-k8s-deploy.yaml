@@ -1,0 +1,28 @@
+---
+kind: Deployment
+apiVersion: apps/v1beta2
+metadata:
+  name: zipkin
+  namespace: do-myproject
+  labels:
+    run: zipkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: zipkin
+  template:
+    metadata:
+      labels:
+        run: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: balchu/zipkin:1.30.3
+        ports:
+        - containerPort: 9411
+          protocol: TCP
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst

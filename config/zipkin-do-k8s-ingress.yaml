@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: zipkin
+  namespace: do-myproject
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: zipkin.geek.per.sg
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: zipkin
+          servicePort: 9411
