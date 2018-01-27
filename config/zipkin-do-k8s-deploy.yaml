@@ -18,14 +18,18 @@ spec:
     spec:
       containers:
       - name: zipkin
-        image: balchu/zipkin:1.30.3
+        image: balchu/zipkin:2.4.5
+        env:
+          - name: TZ
+            value: Asia/Singapore
         ports:
         - containerPort: 9411
           protocol: TCP
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         volumeMounts:
           - mountPath: "/data"
             name: datadir
+
       volumes:
         - name: datadir
           persistentVolumeClaim:
