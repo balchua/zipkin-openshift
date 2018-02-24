@@ -26,14 +26,6 @@ spec:
         - containerPort: 9411
           protocol: TCP
         imagePullPolicy: Always
-        volumeMounts:
-          - mountPath: "/data"
-            name: datadir
-
-      volumes:
-        - name: datadir
-          persistentVolumeClaim:
-            claimName: sample-pv-claim
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
