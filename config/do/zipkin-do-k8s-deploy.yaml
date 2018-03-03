@@ -26,6 +26,13 @@ spec:
         - containerPort: 9411
           protocol: TCP
         imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 512M
+            cpu: 1000m
+          requests:
+            memory: 512M
+            cpu: 500m
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
